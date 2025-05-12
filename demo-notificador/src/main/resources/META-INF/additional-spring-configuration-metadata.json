@@ -20,9 +20,13 @@
     "description": "A description for 'rabbitmq.routing.key'"
   },
   {
-    "name": "spring.amqp.deserialization.trust.all",
+    "name": "rabbitmq.routing.key.notificacoes",
     "type": "java.lang.String",
-    "default": true,
     "description": "A description for 'spring.amqp.deserialization.trust.all'"
+  },
+  {
+    "name": "rabbitmq.queue.notificacoes",
+    "type": "java.lang.String",
+    "description": "A description for 'rabbitmq.queue.notificacoes'"
   }
 ]}

@@ -9,25 +9,22 @@ import com.messageria.demo.entidade.Pedido;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class RabbitMQProducer {
 
-    @Value("${rabbitmq.queue.notificacoes}")
-    private String topicName;
-    @Value("${rabbitmq.routing.key.notificacoes}")
-    private String routingKey;
+    @Value("${rabbitmq.topic.exchange.name}")
+    private String topicExchangeName;
 
+    @Value("${rabbitmq.routing.key.notificacoes}")
+    private String notificacoesRoutingKey;
 
     private final RabbitTemplate rabbitTemplate;
 
     public void sendMessage(Pedido message) {
-        // Envia a mensagem para a fila
-        rabbitTemplate.convertAndSend(topicName, routingKey, message);
-        log.info("Mensagem enviada: {}", message);
+        // Envia a mensagem para o exchange com a routing key apropriada
+        rabbitTemplate.convertAndSend(topicExchangeName, notificacoesRoutingKey, message);
+        log.info("Mensagem enviada para notificações: {}", message);
     }
-
 }

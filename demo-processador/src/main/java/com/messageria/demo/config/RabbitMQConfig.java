@@ -13,31 +13,52 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
+
     @Value("${rabbitmq.queue.name}")
-    private String queueName;
+    private String pedidosQueueName;
+
+    @Value("${rabbitmq.queue.notificacoes}")
+    private String notificacoesQueueName;
+
     @Value("${rabbitmq.topic.exchange.name}")
-    private String topicName;
-    @Value("${rabbitmq.routing.key}")
-    private String routingKey;
+    private String topicExchangeName;
+
+    @Value("${rabbitmq.routing.key.pedidos}")
+    private String pedidosRoutingKey;
+
+    @Value("${rabbitmq.routing.key.notificacoes}")
+    private String notificacoesRoutingKey;
 
     @Bean
-    public Queue queue() {
-        return new Queue(queueName, true);
+    public Queue pedidosQueue() {
+        return new Queue(pedidosQueueName, true);
+    }
+
+    @Bean
+    public Queue notificacoesQueue() {
+        return new Queue(notificacoesQueueName, true);
     }
 
     @Bean
     public TopicExchange exchange() {
-        return new TopicExchange(topicName);
+        return new TopicExchange(topicExchangeName);
     }
 
     @Bean
-    public Binding binding() {
+    public Binding pedidosBinding() {
         return BindingBuilder
-                .bind(queue())
+                .bind(pedidosQueue())
                 .to(exchange())
-                .with(routingKey);
+                .with(pedidosRoutingKey);
     }
 
+    @Bean
+    public Binding notificacoesBinding() {
+        return BindingBuilder
+                .bind(notificacoesQueue())
+                .to(exchange())
+                .with(notificacoesRoutingKey);
+    }
 
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {
