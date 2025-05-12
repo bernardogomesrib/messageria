@@ -1,0 +1,28 @@
+{"properties": [
+  {
+    "name": "ip",
+    "type": "java.lang.String",
+    "description": "A description for 'ip'"
+  },
+  {
+    "name": "rabbitmq.queue.name",
+    "type": "java.lang.String",
+    "description": "A description for 'rabbitmq.queue.name'"
+  },
+  {
+    "name": "rabbitmq.topic.exchange.name",
+    "type": "java.lang.String",
+    "description": "A description for 'rabbitmq.topic.name'"
+  },
+  {
+    "name": "rabbitmq.routing.key",
+    "type": "java.lang.String",
+    "description": "A description for 'rabbitmq.routing.key'"
+  },
+  {
+    "name": "spring.amqp.deserialization.trust.all",
+    "type": "java.lang.String",
+    "default": true,
+    "description": "A description for 'spring.amqp.deserialization.trust.all'"
+  }
+]}
