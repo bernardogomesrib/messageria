@@ -25,7 +25,7 @@ public class PedidoController {
 
     @GetMapping
     public Page<Pedido> listarPedidos(@RequestParam(defaultValue = "0") int page,
-    @RequestParam(defaultValue = "10") int size) {
+    @RequestParam(defaultValue = "20") int size) {
         Pageable pageable =  PageRequest.of(page, size, Sort.by("id").descending());
         return pedidoRepository.findAll(pageable);
     }
