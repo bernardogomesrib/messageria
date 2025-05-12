@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.messageria.demo.entidade.Pedido;
 import com.messageria.demo.entidade.PedidoRepository;
+import com.messageria.demo.producer.RabbitMQProducer;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
