@@ -13,11 +13,12 @@ A aplicação é composta por múltiplos containers Docker que se comunicam entr
 
 ```mermaid
 graph TD
-    A[Producer] -->|Envia mensagens| B[Fila no RabbitMQ]
-    B -->|Consome mensagens| C[Processor]
-    C -->|Salva dados| D[Banco de Dados]
-    E[Notifier] -->|Consome notificações| F[Fila de Notificações]
-    F -->|Notifica via WebSocket| G[Frontend (Angular)]
+    A[Producer] --> B[Fila no RabbitMQ]
+    B --> C[Processor]
+    C --> D[Banco de Dados]
+    C --> E[Notifier]
+    E --> F[Fila de Notificações]
+    F --> G[Frontend (Angular)]
 ```
 
 ---
