@@ -11,6 +11,10 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
       - demo-network
+    deploy:
+      resources:
+        limits:
+          memory: 600M
 
   api-ordem:
     build:
@@ -25,6 +29,10 @@ services:
       - demo-network
     depends_on:
       - rabbitmq
+    deploy:
+      resources:
+        limits:
+          memory: 600M
   api-processadora:
     build:
       context: ./demo-processador
@@ -40,6 +48,10 @@ services:
       - rabbitmq
     networks:
       - demo-network
+    deploy:
+      resources:
+        limits:
+          memory: 600M
   api-notificadora:
     build:
       context: ./demo-notificador
@@ -53,6 +65,10 @@ services:
       - demo-network
     depends_on:
       - rabbitmq
+    deploy:
+      resources:
+        limits:
+          memory: 600M
   frontend:
     build:
       context: ./demo-front
@@ -65,6 +81,10 @@ services:
       - demo-network
     volumes:
       - compilado:/app/compilado
+    deploy:
+      resources:
+        limits:
+          memory: 600M
 
   db_postgres:
     image: postgres:latest
@@ -78,6 +98,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - demo-network
+    deploy:
+      resources:
+        limits:
+          memory: 200M
 volumes:
   postgres_data:
   rabbitmq_data:

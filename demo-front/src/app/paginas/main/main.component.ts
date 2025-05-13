@@ -97,6 +97,20 @@ export class MainComponent {
           const pedido = JSON.parse(message.body);
           console.log('Notificação recebida:', pedido);
           this.pedidos.unshift(pedido); // Adiciona o pedido recebido ao início da lista
+
+          // Envia acknowledgment de volta ao servidor
+            this.http.post(
+            `http://${this.ip}:8082/api/ack`,
+            { id: pedido.id }
+            ).subscribe({
+            next: () => {
+              console.log(`Acknowledgment enviado para o pedido com id ${pedido.id}`);
+            },
+            error: (error) => {
+              console.error('Erro ao enviar acknowledgment:', error);
+              this.toastr.error('Erro ao enviar acknowledgment');
+            },
+            });
           this.toastr.success(
             `Pedido com id ${pedido.id} foi salvo com sucesso!`
           );

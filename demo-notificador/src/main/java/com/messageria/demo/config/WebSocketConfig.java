@@ -40,7 +40,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
+            public void addCorsMappings(@NonNull CorsRegistry registry) {
                 if (allowedOrigins == null || allowedOrigins.length == 0) {
                     log.warn("Nenhuma origem permitida configurada em 'cors.origins'.");
                 } else {
