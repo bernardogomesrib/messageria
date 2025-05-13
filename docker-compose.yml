@@ -16,33 +16,57 @@ services:
     build:
       context: ./demo-ordem
       dockerfile: Dockerfile
+    environment:
+      - ip=${IP_ATUAL}
+      - HOST=rabbitmq
     ports:
       - "8080:8080"
-    depends_on:
-      - postgres
     networks:
       - demo-network
+    depends_on:
+      - rabbitmq
   api-processadora:
     build:
       context: ./demo-processador
       dockerfile: Dockerfile
+    environment:
+      - ip=${IP_ATUAL}
+      - HOST=rabbitmq
+      - DB_URL=jdbc:postgresql://db_postgres:5432/demo
     ports:
       - "8081:8081"
     depends_on:
-      - postgres
+      - db_postgres
+      - rabbitmq
     networks:
       - demo-network
   api-notificadora:
     build:
       context: ./demo-notificador
       dockerfile: Dockerfile
+    environment:
+      - ip=${IP_ATUAL}
+      - HOST=rabbitmq
     ports:
       - "8082:8082"
     networks:
       - demo-network
+    depends_on:
+      - rabbitmq
+  frontend:
+    build:
+      context: ./demo-front
+      dockerfile: Dockerfile
+    environment:
+      - IP_ATUAL=${IP_ATUAL}
+    ports:
+      - "4200:80"
+    networks:
+      - demo-network
+    volumes:
+      - compilado:/app/compilado
 
-
-  postgres:
+  db_postgres:
     image: postgres:latest
     ports:
       - "5432:5432"
@@ -57,6 +81,7 @@ services:
 volumes:
   postgres_data:
   rabbitmq_data:
+  compilado:
 
 networks:
   demo-network:

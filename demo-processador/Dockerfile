@@ -21,4 +21,4 @@ EXPOSE 8081
 
 #<artifactId>demo</artifactId>
 #<version>0.0.1-SNAPSHOT</version>
-CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
