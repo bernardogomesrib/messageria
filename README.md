@@ -18,7 +18,7 @@ graph TD
     C --> D[Banco de Dados]
     C --> E[Notifier]
     E --> F[Fila de Notificações]
-    F --> G[Frontend (Angular)]
+    F --> G[Frontend Angular]
 ```
 
 ---
