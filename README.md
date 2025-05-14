@@ -30,7 +30,8 @@ graph TD
 3. 0 **Exchange** recebe as ordens e coloca na fila de pedidos.
 4. 0 **Processador** consome as mensagens da fila de pedidos e envia uma notificação para a fila de notificações da **Exchange**.
 5. 0 **Notificador** consome mensagens da fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
-6. 0 **Frontend** exibe as notificações para os usuários.
+6. 0 **Frontend** exibe as notificações para os usuários e manda ack para o **Notificador** para retirar a notificação da fila.
+
 
 ---
 
