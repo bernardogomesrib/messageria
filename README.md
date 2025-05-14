@@ -26,11 +26,11 @@ graph TD
 
 ## Descrição da Troca de Mensagens
 1. 0 **Frontend** gera uma ordem de produto que manda para o **Ordenador**.
-2. O **Ordenador** recebe mensagens do **Frontend** e as envia para a fila de pedidos da **Exchange**.
+2. 0 **Ordenador** recebe mensagens do **Frontend** e as envia para a fila de pedidos da **Exchange**.
 3. 0 **Exchange** recebe as ordens e coloca na fila de pedidos.
-4. O **Processador** consome as mensagens da fila de pedidos e envia uma notificação para a fila de notificações da **Exchange**.
-5. O **Notificador** consome mensagens da fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
-6. O **Frontend** exibe as notificações para os usuários.
+4. 0 **Processador** consome as mensagens da fila de pedidos e envia uma notificação para a fila de notificações da **Exchange**.
+5. 0 **Notificador** consome mensagens da fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
+6. 0 **Frontend** exibe as notificações para os usuários.
 
 ---
 
