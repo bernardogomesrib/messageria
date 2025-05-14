@@ -13,23 +13,24 @@ A aplicação é composta por múltiplos containers Docker que se comunicam entr
 
 ```mermaid
 graph TD
-    A[Frontend] --> B[Backend (Ordem)]
-    B --> C[Fila de Pedidos (RabbitMQ)]
-    C --> D[Backend (Processador)]
+    A[Frontend] --> B[Backend Ordenador]
+    B --> C[Fila de Pedidos RabbitMQ]
+    C --> D[Backend Processador]
     D --> E[Banco de Dados]
-    D --> F[Fila de Notificações (RabbitMQ)]
-    F --> G[Backend (Notificador)]
+    D --> F[Fila de Notificações RabbitMQ]
+    F --> G[Backend Notificador]
     G --> H[Frontend]
 ```
 
 ---
 
 ## Descrição da Troca de Mensagens
-
-1. O **Producer** recebe mensagens externas (via API ou outro meio) e as envia para uma fila no RabbitMQ.
-2. O **Processor** consome as mensagens da fila, realiza o processamento necessário e salva os dados no banco de dados.
-3. O **Notifier** consome mensagens de uma fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
-4. O **Frontend** exibe as notificações para os usuários.
+1. 0 **Frontend** gera uma ordem de produto que manda para o **Ordenador**.
+2. O **Ordenador** recebe mensagens do **Frontend** e as envia para a fila de pedidos da **Exchange**.
+3. 0 **Exchange** recebe as ordens e coloca na fila de pedidos.
+4. O **Processador** consome as mensagens da fila de pedidos e envia uma notificação para a fila de notificações da **Exchange**
+5. O **Notificador** consome mensagens da fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
+6. O **Frontend** exibe as notificações para os usuários.
 
 ---
 
@@ -46,10 +47,10 @@ graph TD
 
 - **Docker**: Para orquestração e isolamento dos containers.
 - **RabbitMQ**: Para troca de mensagens entre os componentes.
-- **Banco de Dados**: Para armazenamento persistente dos dados processados.
-- **WebSocket**: Para comunicação em tempo real entre o backend e o frontend.
+- **PostgreSQL**: Para armazenamento persistente dos dados processados.
+- **WebSocket**: Para comunicação em tempo real entre o backend **Notificador** e o **Frontend**.
 - **Angular**: Para desenvolvimento do frontend.
-- **Linguagem de Programação**: A linguagem utilizada nos containers backend pode variar (ex.: Python, Node.js, etc.).
+- **Java**: A linguagem utilizada nos containers backend.
 
 ---
 
@@ -58,8 +59,8 @@ graph TD
 1. Certifique-se de ter o Docker e o Docker Compose instalados.
 2. Clone este repositório.
 3. crie um .env como apontado pelo .env.example
-4. Execute `docker-compose up` para iniciar todos os containers.
-5. Acesse o frontend no navegador para visualizar as notificações.
+4. Execute `docker-compose up -d --build` para iniciar todos os containers.
+5. Acesse o frontend no navegador com o ip que você informou no .env ou com localhost:4200 para fazer pedidos visualizar as notificações.
 
 ---
 
