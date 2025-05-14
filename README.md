@@ -19,7 +19,7 @@ graph TD
     D --> E[Banco de Dados]
     D --> F[Fila de Notificações RabbitMQ]
     F --> G[Backend Notificador]
-    G --> H[Frontend]
+    G --> A[Frontend]
 ```
 
 ---
