@@ -38,6 +38,8 @@ graph TD
 ## Estratégias de Tolerância a Falhas
 
 - **Retries**: Implementação de tentativas automáticas em caso de falha no processamento das mensagens.
+-- Se falhar ao salvar a requisição ela volta para a fila.
+-- Se falhar ao enviar notificação ela volta para a fila.
 - **Persistência**: As mensagens são persistidas no RabbitMQ até serem processadas com sucesso.
 - **Logs**: Logs detalhados são gerados em cada container para monitoramento e depuração.
 - **Isolamento de Containers**: Cada componente é executado em um container separado, garantindo que falhas em um não afetem os outros.
