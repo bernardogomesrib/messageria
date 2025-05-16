@@ -4,9 +4,9 @@
 
 A aplicação é composta por múltiplos containers Docker que se comunicam entre si utilizando RabbitMQ para troca de mensagens. A arquitetura é dividida em quatro principais componentes:
 
-1. **Producer**: Um container responsável por receber mensagens externas e enviá-las para uma fila no RabbitMQ.
-2. **Processor**: Um container que consome mensagens de uma fila, processa os dados e os salva em um banco de dados.
-3. **Notifier**: Um container que consome mensagens de uma fila de notificações e envia notificações via WebSocket para o frontend.
+1. **Ordenador**: Um container responsável por receber mensagens externas e enviá-las para uma fila no RabbitMQ.
+2. **Processador**: Um container que consome mensagens de uma fila, processa os dados e os salva em um banco de dados.
+3. **Notificador**: Um container que consome mensagens de uma fila de notificações e envia notificações via WebSocket para o frontend.
 4. **Frontend**: Um container Angular que exibe as notificações em tempo real para os usuários.
 
 ### Diagrama da Arquitetura
