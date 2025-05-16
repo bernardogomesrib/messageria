@@ -1,4 +1,4 @@
-# Messageria - README
+# Messageria
 
 ## Arquitetura Adotada
 
@@ -25,12 +25,12 @@ graph TD
 ---
 
 ## Descrição da Troca de Mensagens
-1. 0 **Frontend** gera uma ordem de produto que manda para o **Ordenador**.
-2. 0 **Ordenador** recebe mensagens do **Frontend** e as envia para a fila de pedidos da **Exchange**.
-3. 0 **Exchange** recebe as ordens e coloca na fila de pedidos.
-4. 0 **Processador** consome as mensagens da fila de pedidos e envia uma notificação para a fila de notificações da **Exchange**.
-5. 0 **Notificador** consome mensagens da fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
-6. 0 **Frontend** exibe as notificações para os usuários e manda ack para o **Notificador** para retirar a notificação da fila.
+1.  **Frontend** gera uma ordem de produto que manda para o **Ordenador**.
+2.  **Ordenador** recebe mensagens do **Frontend** e as envia para a fila de pedidos da **Exchange**.
+3.  **Exchange** recebe as ordens e coloca na fila de pedidos.
+4.  **Processador** consome as mensagens da fila de pedidos e envia uma notificação para a fila de notificações da **Exchange**.
+5.  **Notificador** consome mensagens da fila de notificações e utiliza WebSocket para enviar notificações em tempo real ao **Frontend**.
+6.  **Frontend** exibe as notificações para os usuários e manda ack para o **Notificador** para retirar a notificação da fila.
 
 
 ---
@@ -38,8 +38,8 @@ graph TD
 ## Estratégias de Tolerância a Falhas
 
 - **Retries**: Implementação de tentativas automáticas em caso de falha no processamento das mensagens.
--- Se falhar ao salvar a requisição ela volta para a fila.
--- Se falhar ao enviar notificação ela volta para a fila.
+- - Se falhar ao salvar a requisição ela volta para a fila.
+- - Se falhar ao enviar notificação ela volta para a fila.
 - **Persistência**: As mensagens são persistidas no RabbitMQ até serem processadas com sucesso.
 - **Logs**: Logs detalhados são gerados em cada container para monitoramento e depuração.
 - **Isolamento de Containers**: Cada componente é executado em um container separado, garantindo que falhas em um não afetem os outros.
