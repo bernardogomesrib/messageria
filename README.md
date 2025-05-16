@@ -13,13 +13,13 @@ A aplicação é composta por múltiplos containers Docker que se comunicam entr
 
 ```mermaid
 graph TD
-    A[Frontend] --> B[Backend Ordenador]
+    A[Frontend] --> B[Backend Ordenador Springboot]
     B --> C[Fila de Pedidos RabbitMQ]
-    C --> D[Backend Processador]
-    D --> E[Banco de Dados]
+    C --> D[Backend Processador Springboot]
+    D --> E[Banco de Dados PostgreSQL]
     D --> F[Fila de Notificações RabbitMQ]
-    F --> G[Backend Notificador]
-    G --> A[Frontend]
+    F --> G[Backend Notificador Springboot]
+    G --> A[Frontend Angular]
 ```
 
 ---
@@ -48,12 +48,12 @@ graph TD
 
 ## Tecnologias Utilizadas
 
-- **Docker**: Para orquestração e isolamento dos containers.
-- **RabbitMQ**: Para troca de mensagens entre os componentes.
-- **PostgreSQL**: Para armazenamento persistente dos dados processados.
+- **Docker v26.1.3**: Para orquestração e isolamento dos containers.
+- **RabbitMQ v4.1.0**: Para troca de mensagens entre os componentes.
+- **PostgreSQL v17.5**: Para armazenamento persistente dos dados processados.
 - **WebSocket**: Para comunicação em tempo real entre o backend **Notificador** e o **Frontend**.
-- **Angular**: Para desenvolvimento do frontend.
-- **Java**: A linguagem utilizada nos containers backend.
+- **Angular v19.2.0**: Para desenvolvimento do frontend.
+- **Java 21**: A linguagem utilizada nos containers backend.
 
 ---
 
